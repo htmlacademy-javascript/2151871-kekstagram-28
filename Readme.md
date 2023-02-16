@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Игорь Коросткин](https://up.htmlacademy.ru/javascript/28/user/2151871).
-* Наставник: `Антон Попов`.
+* Наставник: [Антон Попов](https://htmlacademy.ru/profile/joker).
 
 ---
 
