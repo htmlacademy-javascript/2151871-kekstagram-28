@@ -1,4 +1,4 @@
-import { getCreatePictures } from './data.js';
-import { createRandomPicture } from './createPicture.js';
+import { generatePictures } from './data.js';
+import { renderPictures } from './renderPictures.js';
 
-createRandomPicture(getCreatePictures());
+renderPictures(generatePictures());
