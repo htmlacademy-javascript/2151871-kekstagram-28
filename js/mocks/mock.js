@@ -26,4 +26,9 @@ const COMMENT_LINES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-export { NAMES, COMMENT_LINES, DESCRIPTIONS };
+const AVATAR_COUNT = {
+  MIN: 1,
+  MAX: 6,
+};
+
+export { NAMES, COMMENT_LINES, DESCRIPTIONS, AVATAR_COUNT };
