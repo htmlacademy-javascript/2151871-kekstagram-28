@@ -1,10 +1,12 @@
-const getRandomIntFromRange = (min, max) => {
-  if (min < 0 || max <= min) {
-    getRandomIntFromRange('недопустимое значение');
-  }
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+// Получение случайного целого числа из переданного диапазона включительно
+const getRandomPositiveInteger = (a, b) => {
+  const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+  const upper = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
 };
 
-export { getRandomIntFromRange };
+// Поиск случайного элемента в переданном массиве
+const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
+
+export { getRandomPositiveInteger, getRandomArrayElement };
