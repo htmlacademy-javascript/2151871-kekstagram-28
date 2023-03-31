@@ -13,7 +13,7 @@ const generateComment = () => ({
 });
 
 const generatePicture = (index = 1) => {
-  const comments = Array.from({length: getRandomPositiveInteger(1, 1000)}, generateComment);
+  const comments = Array.from({length: getRandomPositiveInteger(1, 5)}, generateComment);
 
   return {
     id: index - 1,

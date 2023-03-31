@@ -6,7 +6,35 @@ const getRandomPositiveInteger = (a, b) => {
   return Math.floor(result);
 };
 
+// Перемешивание элементов массива
+const shuffleElement = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+};
+
 // Поиск случайного элемента в переданном массиве
 const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 
-export { getRandomPositiveInteger, getRandomArrayElement };
+// Проверка строки на максимальную длину
+const checkStringLength = (string, maxLenght) => string.length <= maxLenght;
+
+// Создание любого элемента, опционально с классом и тектовым содержимым
+const createElement = (tagName, className, text) => {
+  const element = document.createElement(tagName);
+  if (className) {
+    element.classList.add(className);
+  }
+  if (text) {
+    element.textContent = text;
+  }
+  return element;
+};
+
+// Проверка нажатой клавиши
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export { getRandomPositiveInteger, getRandomArrayElement, checkStringLength, createElement, isEscapeKey, shuffleElement };

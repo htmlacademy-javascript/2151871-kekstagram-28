@@ -1,3 +1,5 @@
+import { fillBigPicture } from './showBigPicture.js';
+
 const renderPictures = (pictures) => {
   const picturesList = document.querySelector('.pictures');
   const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -11,9 +13,13 @@ const renderPictures = (pictures) => {
     pictureElement.querySelector('.picture__likes').textContent = picture.likes;
 
     picturesFragment.append(pictureElement);
+
+    pictureElement.addEventListener('click', () => {
+      fillBigPicture(picture);
+    });
   });
 
-  picturesList.append(picturesFragment);
+  picturesList.appendChild(picturesFragment);
 };
 
 export {renderPictures};
