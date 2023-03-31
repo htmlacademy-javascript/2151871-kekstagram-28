@@ -19,7 +19,7 @@ const renderPictures = (pictures) => {
     });
   });
 
-  picturesList.appendChild(picturesFragment);
+  picturesList.append(picturesFragment);
 };
 
 export {renderPictures};
