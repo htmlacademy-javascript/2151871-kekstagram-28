@@ -1,4 +1,4 @@
-import { fillBigPicture } from './showBigPicture.js';
+import { fillBigPicture } from './show-big-picture.js';
 
 const renderPictures = (pictures) => {
   const picturesList = document.querySelector('.pictures');

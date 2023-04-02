@@ -37,4 +37,11 @@ const createElement = (tagName, className, text) => {
 // Проверка нажатой клавиши
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getRandomPositiveInteger, getRandomArrayElement, checkStringLength, createElement, isEscapeKey, shuffleElement };
+// Выполнение действия по нажатию на кнопку
+const checkActionCode = (evt, key, action) => {
+  if (evt.keyCode === key) {
+    action();
+  }
+};
+
+export { getRandomPositiveInteger, getRandomArrayElement, checkStringLength, createElement, isEscapeKey, shuffleElement, checkActionCode };
