@@ -22,4 +22,4 @@ const renderPictures = (pictures) => {
   picturesList.append(picturesFragment);
 };
 
-export {renderPictures};
+export { renderPictures };

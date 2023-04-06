@@ -96,7 +96,6 @@ const onScaleBiggerClick = () => {
 const setEffect = (evt) => {
   // Сброс эффекта
   resetEffect();
-
   // Выбор актвиного эффекта
   activeEffect = getEffect(evt);
 
@@ -121,14 +120,14 @@ const closeEditModal = () => {
   editModal.classList.add('hidden');
   body.classList.remove('modal-open');
 
-  editModalClose.removeEventListener('click', closeEditModal);
   effectsList.removeEventListener('click', onEffecstListClick);
   scaleBigger.removeEventListener('click', onScaleBiggerClick);
   scaleSmaller.removeEventListener('click', onScaleSmallerClick);
 };
-
 const onCloseEditModalClick = () => {
-  closeEditModal();
+  editModalClose.removeEventListener('click', () => {
+    closeEditModal();
+  });
 };
 
 const onEditModalEscKeydown = (evt) => {
@@ -157,3 +156,5 @@ const onFileUploadChange = () => {
 };
 
 fileUpload.addEventListener('change', onFileUploadChange);
+
+export { closeEditModal };
