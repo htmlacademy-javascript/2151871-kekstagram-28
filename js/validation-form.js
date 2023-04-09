@@ -83,7 +83,6 @@ const unblockSubmitButton = () => {
   submitButton.textContent = 'Опубликовать';
 };
 
-
 // Обработчик на отправку формы
 uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();

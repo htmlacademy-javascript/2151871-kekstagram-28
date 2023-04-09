@@ -56,6 +56,12 @@ const initSlider = (effect) => {
   });
 };
 
+// Изменение масштаба изображения
+const setScale = (value) => {
+  imagePreview.style.transform = `scale(${value / 100})`;
+  scaleValue.value = `${ value }%`;
+};
+
 // Сброс эффектов, применённых к изображению
 const resetEffect = () => {
   if (activeEffect) {
@@ -63,15 +69,9 @@ const resetEffect = () => {
     sliderElement.noUiSlider.destroy();
   }
 
+  setScale(100);
   imagePreview.style.filter = null;
-  imagePreview.style.transform = null;
   sliderContainer.classList.add('hidden');
-};
-
-// Изменение масштаба изображения
-const setScale = (value) => {
-  imagePreview.style.transform = `scale(${value / 100})`;
-  scaleValue.value = `${ value }%`;
 };
 
 const onScaleSmallerClick = () => {
@@ -113,21 +113,8 @@ const onEffecstListClick = (evt) => {
   setEffect(evt);
 };
 
-// Закрытие формы редактирования изображения
-const closeEditModal = () => {
-  fileUpload.value = '';
-  uploadForm.reset();
-  editModal.classList.add('hidden');
-  body.classList.remove('modal-open');
-
-  effectsList.removeEventListener('click', onEffecstListClick);
-  scaleBigger.removeEventListener('click', onScaleBiggerClick);
-  scaleSmaller.removeEventListener('click', onScaleSmallerClick);
-};
 const onCloseEditModalClick = () => {
-  editModalClose.removeEventListener('click', () => {
-    closeEditModal();
-  });
+  closeEditModal();
 };
 
 const onEditModalEscKeydown = (evt) => {
@@ -145,7 +132,6 @@ const onEditModalEscKeydown = (evt) => {
 const onFileUploadChange = () => {
   editModal.classList.remove('hidden');
   sliderContainer.classList.add('hidden');
-  body.classList.add('modal-open');
   scaleValue.value = Scale.MAX;
 
   document.addEventListener('keydown', onEditModalEscKeydown);
@@ -154,6 +140,20 @@ const onFileUploadChange = () => {
   scaleBigger.addEventListener('click', onScaleBiggerClick);
   scaleSmaller.addEventListener('click', onScaleSmallerClick);
 };
+
+// Закрытие формы редактирования изображения
+function closeEditModal() {
+  editModal.classList.add('hidden');
+  body.classList.remove('modal-open');
+  uploadForm.reset();
+  // resetEffect();
+
+  document.removeEventListener('keydown', onEditModalEscKeydown);
+  editModalClose.removeEventListener('click', onCloseEditModalClick);
+  effectsList.removeEventListener('click', onEffecstListClick);
+  scaleBigger.removeEventListener('click', onScaleBiggerClick);
+  scaleSmaller.removeEventListener('click', onScaleSmallerClick);
+}
 
 fileUpload.addEventListener('change', onFileUploadChange);
 
