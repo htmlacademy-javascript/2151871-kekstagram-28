@@ -4,7 +4,7 @@ const COMMENTS_LIMIT = 5;
 const body = document.querySelector('body');
 const bigPicture = body.querySelector('.big-picture');
 const bigPictureImage = bigPicture.querySelector('img');
-const bigPictureCancel = bigPicture.querySelector('#picture-cancel');
+const bigPictureClose = bigPicture.querySelector('#picture-cancel');
 const pictureLikesCount = bigPicture.querySelector('.likes-count');
 const pictureCommentsCount = bigPicture.querySelector('.comments-count');
 const pictureCaption = bigPicture.querySelector('.social__caption');
@@ -45,6 +45,17 @@ const loadComments = (comments) => {
   }
 };
 
+const onBigPictureCloseClick = () => {
+  closeBigPicture();
+};
+
+const onBigPictureEscKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeBigPicture();
+  }
+};
+
 const fillBigPicture = ({url, likes, description, comments}) => {
   bigPictureImage.src = url;
   pictureLikesCount.textContent = likes;
@@ -58,19 +69,16 @@ const fillBigPicture = ({url, likes, description, comments}) => {
   bigPicture.classList.remove('hidden');
   bigPictureCommentsCount.classList.add('hidden');
 
-  bigPictureCancel.addEventListener('click', () => {
-    bigPicture.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-  });
-
-  const closeBigPicture = document.addEventListener('keydown', (evt) => {
-    if (isEscapeKey(evt)) {
-      bigPicture.classList.add('hidden');
-      document.body.classList.remove('modal-open');
-    }
-  });
-  document.removeEventListener('keydown', closeBigPicture);
+  document.addEventListener('keydown', onBigPictureEscKeydown);
+  bigPictureClose.addEventListener('click', onBigPictureCloseClick);
   bigPictureCommentsLoader.addEventListener('click', () => loadComments(comments));
 };
+
+function closeBigPicture() {
+  bigPicture.classList.add('hidden');
+  body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onBigPictureEscKeydown);
+  bigPictureClose.removeEventListener('click', onBigPictureCloseClick);
+}
 
 export { fillBigPicture };
